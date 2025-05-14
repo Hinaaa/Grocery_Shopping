@@ -18,23 +18,15 @@ public class ProductController {
 
     public ProductController(ProductService productService){
         this.productService= productService;
-
     }
 
     @GetMapping
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
-
     }
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable String id) throws IdNotFoundException {
         return productService.getProductById(id);
-
     }
-
-
-
-
-
 }

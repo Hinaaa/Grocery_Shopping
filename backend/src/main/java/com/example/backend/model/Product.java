@@ -6,6 +6,5 @@ public record Product(
         String description,
         String category,
         Double price
-
 ) {
 }

@@ -24,7 +24,6 @@ class ProductServiceTest {
     void setUp(){
         banana = new Product("1","Banana","Its fruit", "Fruit", 1.90);
         productService= new ProductService(mockProductRepo);
-
     }
 
     @Test
@@ -38,7 +37,6 @@ class ProductServiceTest {
 
         // THEN
         assertEquals(actual, Collections.emptyList());
-
     }
 
     @Test
