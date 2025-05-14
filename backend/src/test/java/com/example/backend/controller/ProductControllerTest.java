@@ -9,6 +9,4 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 
 class ProductControllerTest {
-
-
 }
