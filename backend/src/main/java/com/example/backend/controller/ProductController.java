@@ -2,11 +2,9 @@ package com.example.backend.controller;
 
 import com.example.backend.exception.IdNotFoundException;
 import com.example.backend.model.Product;
+import com.example.backend.model.ProductDto;
 import com.example.backend.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +27,9 @@ public class ProductController {
     public Product getProductById(@PathVariable String id) throws IdNotFoundException {
         return productService.getProductById(id);
     }
+    @PostMapping
+    public Product addProduct(@RequestBody ProductDto productDto) {
+        return productService.addProduct(productDto);
+    }
+
 }
