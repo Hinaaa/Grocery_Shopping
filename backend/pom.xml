@@ -66,6 +66,9 @@
     </dependencies>
 
     <build>
+        <finalName>
+            groceryshop
+        </finalName>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
