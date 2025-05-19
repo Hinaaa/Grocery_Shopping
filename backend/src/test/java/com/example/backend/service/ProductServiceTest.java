@@ -92,4 +92,61 @@ class ProductServiceTest {
         assertEquals(apple, actual);
         Mockito.verify(mockProductRepo, Mockito.times(1)).save(apple);
     }
+    @Test
+    void updateProduct_shouldReturnProduct_whenCalledWhithValidId() throws IdNotFoundException {
+        ProductService productService = new ProductService(mockProductRepo, mockServiceId);
+        ProductDto newAppleDto = new ProductDto( "apple", "i'm a nice green apple",  "Fruit", "kg", 1.89);
+        Product apple = new Product("1", newAppleDto.name(),
+                "red", newAppleDto.category(), newAppleDto.unit(), newAppleDto.price());
+        Product expected = new Product("1", newAppleDto.name(),
+                newAppleDto.description(), newAppleDto.category(), newAppleDto.unit(), newAppleDto.price());
+        Mockito.when(mockProductRepo.existsById(apple.id())).thenReturn(true);
+        Mockito.when(mockProductRepo.save(expected)).thenReturn(expected);
+        //When
+        Product actual = productService.updateProduct(apple.id(), newAppleDto);
+        //Then
+        assertEquals(expected, actual);
+        Mockito.verify(mockProductRepo).save(expected);
+        Mockito.verify(mockProductRepo).existsById(apple.id());
+    }
+
+    @Test
+    void updateProduct_shouldThrowException_whenCalledWithInValidId() {
+        ProductDto appleDto = new ProductDto( "apple", "i'm a nice red apple",  "Fruit", "kg", 1.89);
+        Product apple = new Product("1", appleDto.name(), appleDto.description(), appleDto.category(), appleDto.unit(), appleDto.price());
+        Mockito.when(mockProductRepo.existsById(apple.id())).thenReturn(false);
+        //when
+        try {
+            productService.updateProduct(apple.id(),appleDto);
+            fail();
+        }
+        catch (IdNotFoundException e) {
+            assertTrue(true);
+        }
+    }
+    @Test
+    void deleteProduct_shouldDeleteDataAndReturnTrue_whenCalledWithValidId() throws IdNotFoundException {
+        ProductService productService = new ProductService(mockProductRepo, mockServiceId);
+        Mockito.when(mockProductRepo.existsById(banana.id())).thenReturn(true); //1
+        //When
+        boolean actual = productService.deleteProductById(banana.id());
+        //Then
+        assertTrue(actual);
+        Mockito.verify(mockProductRepo).deleteById(banana.id());
+        Mockito.verify(mockProductRepo).existsById(banana.id());
+    }
+    @Test
+    void deleteProduct_shouldThrowException_whenCalledWithInValidId() {
+        ProductService productService = new ProductService(mockProductRepo, mockServiceId);
+        Mockito.when(mockProductRepo.existsById(banana.id())).thenReturn(false);
+        //when
+        try {
+            productService.deleteProductById(banana.id());
+            fail();
+        }
+        catch (IdNotFoundException e) {
+            assertTrue(true);
+        }
+    }
+
 }
