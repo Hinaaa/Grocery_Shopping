@@ -90,4 +90,49 @@ class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.unit").value(cherry.unit()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(cherry.price().toString()));
     }
+    @Test
+    void updateProduct_shouldReturnProduct_whenCalledWhithValidData() throws Exception {
+        ProductDto updatedCherryDto = new ProductDto(cherry.name(), "is not tasty", cherry.category(), cherry.unit(), cherry.price());
+        mockProductRepo.save(cherry);
+        //When
+        mockMvc.perform(put("/api/products/"+cherry.id())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(updatedCherryDto))
+        )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(cherry.name()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(updatedCherryDto.description()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.category").value(cherry.category()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.unit").value(cherry.unit()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(cherry.price().toString()));
+    }
+    @Test
+    void updateProduct_shouldThrowAnException_whenCalledWithInValidId() throws Exception {
+        String invalidId = "99";
+        ProductDto cherryDto = new ProductDto("Cherry", "Is tasty", "Fruit", "kg", 5.99);
+
+        mockMvc.perform(put("/api/products/"+invalidId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(cherryDto))
+                )
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.error")
+                        .value("Error: Product Id "+invalidId+" not found"));
+    }
+    @Test
+    void deleteProduct_shouldDeleteData_whenCalledWithValidId() throws Exception {
+        mockProductRepo.save(cherry);
+        //when
+        mockMvc.perform(delete("/api/products/"+cherry.id()))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+    @Test
+    void deleteProduct_shouldThrowException_whenCalledWithInValidId() throws Exception {
+        String invalidId = "99";
+        mockMvc.perform(delete("/api/products/"+invalidId))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.error")
+                        .value("Error: Product Id "+invalidId+" not found"));
+    }
 }

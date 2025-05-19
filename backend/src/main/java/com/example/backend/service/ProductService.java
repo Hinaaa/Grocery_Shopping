@@ -40,4 +40,26 @@ public class ProductService {
        productRepo.save(newProduct);
        return newProduct;
     }
+
+    public Product updateProduct(String id, ProductDto productDto) throws IdNotFoundException {
+        if (productRepo.existsById(id)) {
+            Product updatedProduct = new Product(id,
+                    productDto.name(),
+                    productDto.description(),
+                    productDto.category(),
+                    productDto.unit(),
+                    productDto.price()
+            );
+            return productRepo.save(updatedProduct);
+        }
+        throw new IdNotFoundException(id);
+    }
+
+    public boolean deleteProductById(String id) throws IdNotFoundException {
+        if (productRepo.existsById(id)) {
+            productRepo.deleteById(id);
+            return true;
+        }
+        throw new IdNotFoundException(id);
+    }
 }

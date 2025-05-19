@@ -32,4 +32,13 @@ public class ProductController {
         return productService.addProduct(productDto);
     }
 
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable String id, @RequestBody ProductDto productDto) throws IdNotFoundException {
+        return productService.updateProduct(id,productDto);
+    }
+    @DeleteMapping("/{id}")
+    public boolean deleteProduct(@PathVariable String id) throws IdNotFoundException {
+         return productService.deleteProductById(id);
+    }
+
 }
