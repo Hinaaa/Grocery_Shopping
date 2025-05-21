@@ -62,3 +62,6 @@
 .cartitem span{
   margin: 0 0.5rem;
 }
+.noborder{
+  border: none;
+}
