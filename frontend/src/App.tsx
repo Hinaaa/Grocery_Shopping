@@ -20,6 +20,7 @@ export default function App() {
             <Routes>
               <Route path={"/"} element={<Home addToCart={addToCart}/>}/>
               <Route path={"/cart"} element={<Cart cart={cart}/>}/>
+              <Route path={"/checkout"} element={<h1>Checkout</h1>}/>
             </Routes>
         </main>
         <footer> By Beatrice, Hina and Mimoona</footer>
