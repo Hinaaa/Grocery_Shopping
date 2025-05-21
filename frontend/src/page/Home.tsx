@@ -4,7 +4,7 @@ import axios from "axios";
 import ProductCard from "../component/ProductCard.tsx";
 
 type HomeProps={
-    addToCart: () => void
+    addToCart: (product: Product) => void
 }
 
 export default function Home(props: Readonly<HomeProps>){

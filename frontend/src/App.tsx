@@ -16,12 +16,12 @@ export default function App() {
   return (
       <>
         <NavBar />
-
-        <Routes>
-          <Route path={"/"} element={<Home addToCart={addToCart}/>}/>
-          <Route path={"/cart"} element={<Cart cart={cart}/>}/>
-        </Routes>
-
+        <main className="rootmain">
+            <Routes>
+              <Route path={"/"} element={<Home addToCart={addToCart}/>}/>
+              <Route path={"/cart"} element={<Cart cart={cart}/>}/>
+            </Routes>
+        </main>
         <footer> By Beatrice, Hina and Mimoona</footer>
       </>
 )

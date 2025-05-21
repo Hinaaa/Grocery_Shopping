@@ -17,6 +17,9 @@
 .navlink{
   padding: 0.5rem;
 }
+.rootmain{
+  margin: 1.5rem 0;
+}
 .productcard{
   min-width: 10rem;
   min-height: 5rem;
@@ -38,4 +41,24 @@
 .productlist > * {
   flex: 0 0 25%;
   box-sizing: border-box;
+}
+.cartheader{
+  font-weight: bold;
+}
+.cartitem {
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  align-items: flex-start; /* Zentriert die Inhalte vertikal */
+
+  max-width: 100%;
+  border-bottom: 1px solid;
+  padding: 1rem 0
+}
+.cartitem span  {
+  text-align: center;
+  font-size: 1rem;
+}
+.cartitem span{
+  margin: 0 0.5rem;
 }
