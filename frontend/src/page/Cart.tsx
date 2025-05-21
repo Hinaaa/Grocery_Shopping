@@ -40,7 +40,7 @@ export default function Cart(props: Readonly<CartProps> ){
                         <span>{props.cart.reduce((a:number, b:Product)=>a+b.price, 0)}</span>
                     </div>
                 </main>
-                <div className="cartitem">
+                <div className="cartitem noborder">
                     <span></span>
                     <span></span>
                     <span></span>
