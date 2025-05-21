@@ -6,3 +6,11 @@ export type Product = {
     "unit":string,
     "price":number
 }
+
+export type CartItemType = {
+    "id":string,
+    "name":string,
+    "unit":string,
+    "price":number,
+    "quantity":number
+}

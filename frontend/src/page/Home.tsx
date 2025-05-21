@@ -3,7 +3,11 @@ import type {Product} from "../types.ts";
 import axios from "axios";
 import ProductCard from "../component/ProductCard.tsx";
 
-export default function Home(){
+type HomeProps={
+    addToCart: () => void
+}
+
+export default function Home(props: Readonly<HomeProps>){
 
     const [products, getProducts] = useState<Product[]>([]);
 
@@ -17,7 +21,7 @@ export default function Home(){
     return(
         <>
             <div className="productlist">
-                {products.map(p=><ProductCard key={p.id} product={p}/>)}
+                {products.map(p=><ProductCard key={p.id} product={p} addToCart={props.addToCart}/>)}
             </div>
         </>
     )
