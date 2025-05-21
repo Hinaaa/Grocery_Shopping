@@ -16,7 +16,7 @@ export default function ProductCard(props:Readonly<Props>){
 
 
     return(
-        <><Link to={`/products/${props.product.id}`}>
+        <><Link to={`/${props.product.id}`}>
             <div className="productcard">
                 <header>{props.product.name}</header>
                 <main>
