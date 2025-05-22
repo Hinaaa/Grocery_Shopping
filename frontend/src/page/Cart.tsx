@@ -1,4 +1,4 @@
-import type {CartItemType, Product} from "../types.ts";
+import type { Product} from "../types.ts";
 import CartItem from "../component/CartItem.tsx";
 import CartHeader from "../component/CartHeader.tsx";
 import {useNavigate} from "react-router-dom";

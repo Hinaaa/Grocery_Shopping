@@ -8,16 +8,16 @@ type Props = {
 export default function CheckoutAndPayment(props: Readonly<Props>) {
     //for shipping fields
 
-    const[email,setEmail] = useState("")
+    const [email, setEmail] = useState("")
 
-    const[country, setcountry] = useState("")
-    const[firstName,setFirstName] = useState("")
-    const[lastName,setLastName] = useState("")
-    const[street, setStreet] = useState("")
-    const[houseNumber, setHouseNumber] = useState("")
-    const[postalCode, setPostalCode] = useState("")
-    const[city, setCity] = useState("")
-    const[phone, setPhone] = useState("")
+    const [country, setCountry] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [street, setStreet] = useState("")
+    const [houseNumber, setHouseNumber] = useState("")
+    const [postalCode, setPostalCode] = useState("")
+    const [city, setCity] = useState("")
+    const [phone, setPhone] = useState("")
     const [saveInfo, setSaveInfo] = useState(false);
     const [method, setMethod] = useState("cash")
     const [error, setError] = useState("");
@@ -40,24 +40,23 @@ export default function CheckoutAndPayment(props: Readonly<Props>) {
             }
         }
         setError(""); // clear any previous errors
-       // navigate("/success");
 
     }
-    //for payment with card settigns
+    //for payment with card settings
     const [cardNumber, setCardNumber] = useState("");
     const [expiry, setExpiry] = useState("")
-    const [cvv, setcvv] = useState("")
+    const [cvv, setCVV] = useState("")
 
-    function handleOrder(){
-      handlePayment();
+    function handleOrder() {
+        handlePayment();
         const userId = "123"
         props.submitOrder(userId)
-            .then(()=>{
+            .then(() => {
                 navigate("/success");
                 props.resetCartAndCount();
 
             })
-            .catch(error =>{
+            .catch(error => {
                 console.error("order failed", error);
             })
 
@@ -70,14 +69,14 @@ export default function CheckoutAndPayment(props: Readonly<Props>) {
                 <input type="text" placeholder="email *" value={email}
                        onChange={(e) => setEmail(e.target.value)}/>
                 <div className="auth-buttons">
-                    <button onClick={()=>navigate("/register")}>Register</button>
-                    <button onClick={()=>navigate("/login")}>Login</button>
+                    <button onClick={() => navigate("/register")}>Register</button>
+                    <button onClick={() => navigate("/login")}>Login</button>
                 </div>
             </div>
             <label htmlFor="delivery"><strong>Delivery Details *</strong></label>
             <div className="shipping-form">
                 <input type="text" placeholder="First Name *" value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}/>
+                       onChange={(e) => setFirstName(e.target.value)}/>
                 <input type="text" placeholder="Last Name *" value={lastName}
                        onChange={(e) => setLastName(e.target.value)}/>
 
@@ -92,7 +91,7 @@ export default function CheckoutAndPayment(props: Readonly<Props>) {
                 <input type="text" placeholder="City *" value={city}
                        onChange={(e) => setCity(e.target.value)}/>
                 <input type="text" placeholder="Country *" value={country}
-                       onChange={(e) => setcountry(e.target.value)}/>
+                       onChange={(e) => setCountry(e.target.value)}/>
             </div>
             <div className="save-info">
                 <input
@@ -105,51 +104,50 @@ export default function CheckoutAndPayment(props: Readonly<Props>) {
             </div>
 
             <div className="payment-container">
-            {/* Method for payment options */}
-            <h2>Choose Payment Method</h2>
+                {/* Method for payment options */}
+                <h2>Choose Payment Method</h2>
 
-            {/* Payment with Cash */}
-             <div className="payment-methods">
-                 <input type="radio" name="payment" id="cash" value = "cash"
-                   onChange={(e) => setMethod(e.target.value)}
-                   checked={method === "cash"}
-            />
-            <label htmlFor="cash">Cash</label>
-             </div>
+                {/* Payment with Cash */}
+                <div className="payment-methods">
+                    <input type="radio" name="payment" id="cash" value="cash"
+                           onChange={(e) => setMethod(e.target.value)}
+                           checked={method === "cash"}
+                    />
+                    <label htmlFor="cash">Cash</label>
+                </div>
 
                 {/* if cash selected */}
                 {method === "cash" && (
                     <p className="payment-note">Pay on Delivery</p>
                 )}
                 {/* Payment with card */}
-            <div>
-            <input type="radio" name="payment" id="card" value="card"
-                   onChange={(e)=>setMethod(e.target.value)}
-                   checked={method==="card"}
-                   />
-            <label htmlFor="card">Card</label>
-             </div>
-
-           {/* Card fields appears if card selected */}
-            {method === "card" && (
-                <div className="card-fields">
-                    <input type="text" placeholder="Card Number" value={cardNumber}
-                    onChange={(e) => setCardNumber(e.target.value)}
+                <div>
+                    <input type="radio" name="payment" id="card" value="card"
+                           onChange={(e) => setMethod(e.target.value)}
+                           checked={method === "card"}
                     />
-                    <input type="text" placeholder="Expiry" value={expiry}
-                           onChange={(e)=>setExpiry(e.target.value)}
-                    />
-                    <input type="text" placeholder="CVV" value={cvv}
-                    onChange={(e)=>setcvv(e.target.value)}
-                    />
+                    <label htmlFor="card">Card</label>
                 </div>
-            )}
+
+                {/* Card fields appears if card selected */}
+                {method === "card" && (
+                    <div className="card-fields">
+                        <input type="text" placeholder="Card Number" value={cardNumber}
+                               onChange={(e) => setCardNumber(e.target.value)}
+                        />
+                        <input type="text" placeholder="Expiry" value={expiry}
+                               onChange={(e) => setExpiry(e.target.value)}
+                        />
+                        <input type="text" placeholder="CVV" value={cvv}
+                               onChange={(e) => setCVV(e.target.value)}
+                        />
+                    </div>
+                )}
 
             </div>
             {/* PayNow button*/}
             <button onClick={handleOrder}>Pay Now</button>
             {error && <div className="error-message">{error}</div>}
-
 
         </div>
     );

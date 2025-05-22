@@ -1,15 +1,15 @@
-import type { Product} from "../types.ts";
+import type {Product} from "../types.ts";
 
 
-type CartItemProps ={
+type CartItemProps = {
     cartItem: Product
-    quantity:number
+    quantity: number
 }
-export default function CartItem(props: Readonly<CartItemProps>){
+export default function CartItem(props: Readonly<CartItemProps>) {
 
-    const totalPrice = props.quantity*props.cartItem.price;
+    const totalPrice = props.quantity * props.cartItem.price;
 
-    return(
+    return (
         <>
             <div className="cartitem">
                 <span>{props.cartItem.name}</span>

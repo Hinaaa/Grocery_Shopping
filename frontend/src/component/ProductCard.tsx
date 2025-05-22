@@ -14,7 +14,7 @@ export default function ProductCard(props: Readonly<Props>) {
 
     function addProduct(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        props.addToCart(props.product, 1 );
+        props.addToCart(props.product, 1);
     }
 
     return (
