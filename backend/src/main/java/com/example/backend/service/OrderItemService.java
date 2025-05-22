@@ -19,40 +19,17 @@ public class OrderItemService {
         this.serviceId = serviceId;
     }
 
-    public List<OrderItem> getOrderItemsOfOrder(String orderId) {
-       return orderItemRepro.getOrderItemsByOrderId(orderId);
+    public List<OrderItem> getOrderItemsOfOrderId(String orderId) throws IdNotFoundException {
+       return orderItemRepro.getOrderItemsByOrderId(orderId).orElseThrow(()->new IdNotFoundException(orderId, "OrderItem"));
     }
-
-    public OrderItem addOrderItem(OrderItemDto orderItemDto) {
+    public OrderItem addOrderItem(String orderId, OrderItemDto orderItemDto) {
         OrderItem newOrderItem = new OrderItem(
                 serviceId.generateId(),
-                orderItemDto.orderId(),
+                orderId,
                 orderItemDto.productId(),
                 orderItemDto.count()
         );
         orderItemRepro.save(newOrderItem);
         return newOrderItem;
-    }
-
-    public OrderItem updateOrderItem(String id, OrderItemDto orderItemDto) throws IdNotFoundException {
-        if(orderItemRepro.existsById(id)){
-            OrderItem newOrderItem = new OrderItem(
-                    id,
-                    orderItemDto.orderId(),
-                    orderItemDto.productId(),
-                    orderItemDto.count()
-            );
-            orderItemRepro.save(newOrderItem);
-            return newOrderItem;
-        }
-        throw new IdNotFoundException(id, "Order item");
-    }
-
-    public boolean deleteOrderItem(String id)  throws IdNotFoundException{
-        if(orderItemRepro.existsById(id)){
-            orderItemRepro.deleteById(id);
-            return true;
-        }
-        throw new IdNotFoundException(id, "Order item");
     }
 }
