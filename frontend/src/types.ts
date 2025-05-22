@@ -12,5 +12,11 @@ export type CartItemType = {
     "name":string,
     "unit":string,
     "price":number,
-    "quantity":number
+    "quantity":number,
+    "total":number
+}
+
+export type CountType = {
+    productId: string,
+    count: number
 }

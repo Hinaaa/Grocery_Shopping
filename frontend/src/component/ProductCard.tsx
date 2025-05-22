@@ -1,35 +1,39 @@
-import type { Product} from "../types.ts";
+import type {CountType, Product} from "../types.ts";
 import {Link} from "react-router-dom";
 
 type Props = {
-    product:Product
-    addToCart: (product: Product) => void
+    product: Product
+    addToCart: (product: Product, count: number) => void
+    count: CountType[]
 }
 
-export default function ProductCard(props:Readonly<Props>){
+export default function ProductCard(props: Readonly<Props>) {
 
-    function addProduct(e: React.MouseEvent<HTMLButtonElement>){
+    const matchedProduct = props.count.find(c => c.productId === props.product.id);
+    const productCount = matchedProduct ? matchedProduct.count : 0;
+
+    function addProduct(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        props.addToCart(props.product);
+        props.addToCart(props.product, 1 );
     }
 
 
-
-    return(
-        <><Link to={`/${props.product.id}`}>
+    return (
+        <>
             <div className="productcard">
-                <header>{props.product.name}</header>
-                <main>
-                    <span>{props.product.description}</span>
-                    <span>{props.product.unit}</span>
-                    <span>{props.product.price}</span>
-                </main>
-                <footer>
+                <Link to={`/${props.product.id}`}>
 
-                    <button onClick={addProduct}>+</button>
+                    <header>{props.product.name}</header>
+                    <main>
+                        <span>{props.product.description}</span>
+                        <span>{props.product.unit}</span>
+                        <span>{props.product.price}</span>
+                    </main>
+                </Link>
+                <footer>
+                    <button onClick={addProduct}> {productCount} +</button>
                 </footer>
             </div>
-        </Link>
         </>
     )
 

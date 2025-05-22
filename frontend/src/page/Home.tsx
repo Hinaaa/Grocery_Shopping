@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
-import type {Product} from "../types.ts";
+import type {CountType, Product} from "../types.ts";
 import axios from "axios";
 import ProductCard from "../component/ProductCard.tsx";
 
 type HomeProps={
-    addToCart: (product: Product) => void
+    addToCart: (product: Product, count:number) => void
+    count: CountType[]
 }
-
 export default function Home(props: Readonly<HomeProps>){
 
     const [products, getProducts] = useState<Product[]>([]);
@@ -21,7 +21,7 @@ export default function Home(props: Readonly<HomeProps>){
     return(
         <>
             <div className="productlist">
-                {products.map(p=><ProductCard key={p.id} product={p} addToCart={props.addToCart}/>)}
+                {products.map(p=><ProductCard key={p.id} product={p} addToCart={props.addToCart} count={props.count}/>)}
             </div>
         </>
     )
