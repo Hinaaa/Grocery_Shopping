@@ -19,16 +19,37 @@ export default function CheckoutAndPayment(props: Readonly<Props>) {
     const[city, setCity] = useState("")
     const[phone, setPhone] = useState("")
     const [saveInfo, setSaveInfo] = useState(false);
-
-    //for payment handling
     const [method, setMethod] = useState("cash")
+    const [error, setError] = useState("");
     const navigate = useNavigate()
+
+    const handlePayment = () => {
+        // Required fields
+        if (
+            !email || !firstName || !lastName ||
+            !phone || !street || !houseNumber ||
+            !postalCode || !city || !country
+        ) {
+            setError("Please fill all required fields.");
+            return;
+        }
+        if (method === "card") {
+            if (!cardNumber || !expiry || !cvv) {
+                setError("Please fill in all card details.");
+                return;
+            }
+        }
+        setError(""); // clear any previous errors
+       // navigate("/success");
+
+    }
     //for payment with card settigns
     const [cardNumber, setCardNumber] = useState("");
     const [expiry, setExpiry] = useState("")
     const [cvv, setcvv] = useState("")
 
     function handleOrder(){
+      handlePayment();
         const userId = "123"
         props.submitOrder(userId)
             .then(()=>{
@@ -49,8 +70,8 @@ export default function CheckoutAndPayment(props: Readonly<Props>) {
                 <input type="text" placeholder="email *" value={email}
                        onChange={(e) => setEmail(e.target.value)}/>
                 <div className="auth-buttons">
-                    <button>Register</button>
-                    <button>Login</button>
+                    <button onClick={()=>navigate("/register")}>Register</button>
+                    <button onClick={()=>navigate("/login")}>Login</button>
                 </div>
             </div>
             <label htmlFor="delivery"><strong>Delivery Details *</strong></label>
@@ -127,6 +148,9 @@ export default function CheckoutAndPayment(props: Readonly<Props>) {
             </div>
             {/* PayNow button*/}
             <button onClick={handleOrder}>Pay Now</button>
+            {error && <div className="error-message">{error}</div>}
+
+
         </div>
     );
 }

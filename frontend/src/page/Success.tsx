@@ -10,7 +10,7 @@ export default function Success(props: Readonly<Props>) {
     }
 
     return(
-        <div>
+        <div className="success-container">
             <h2>Order has been placed successfully</h2>
             <p>Order Number: <strong>{props.orderNumber}</strong></p>
             <button onClick={handleShopMore}>Shop More</button>

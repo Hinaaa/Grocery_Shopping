@@ -8,7 +8,12 @@ import type {CountType, OrderPayload, Product} from "./types.ts";
 import ProductDetails from "./page/ProductDetails.tsx";
 import Success from "./page/Success.tsx";
 import CheckoutAndPayment from "./page/CheckoutAndPayment.tsx";
+import Register from "./page/Register.tsx";
+import Login from "./page/Login.tsx";
+import RegisterDetail from "./page/RegistrationDetails.tsx";
+import Payment from "./page/Payment.tsx";
 import axios from "axios";
+
 
 export default function App() {
     const [cart, setCart] = useState<Product[]>([]);
@@ -83,15 +88,20 @@ export default function App() {
             <Routes>
               <Route path={"/"} element={<Home addToCart={addToCart} count={count}/>}/>
               <Route path={"/cart"} element={<Cart cart={cart}/>}/>
+              <Route path={"/login"} element={<Login/>} />
+                <Route path={"/register"} element={<Register/>} />
+                <Route path={"/registerdetail"} element={<RegisterDetail/>} />
+                <Route path={"/payment"} element={<Payment/>} />
+
               <Route path={"/checkoutAndPayment"} element={<CheckoutAndPayment resetCartAndCount={resetCartAndCount} submitOrder={submitOrder}/>} />
               <Route path={"/success"} element={<Success orderNumber={orderNumber}/>} />
+
               <Route path={"/:id"} element={<ProductDetails/>}/>
             </Routes>
         </main>
         <footer> By Beatrice, Hina and Mimoona</footer>
       </>
 )
-
 }
 // /api/order  post path
 // payload must have :
