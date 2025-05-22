@@ -1,15 +1,18 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import * as React from 'react';
+
 
 export default function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("");
+    const navigate = useNavigate();
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         if (!email) {
-            setError("Pleas enter Email");
+            setError("Please enter Email");
             return;
         }
         if (!password) {
@@ -17,6 +20,7 @@ export default function Login() {
             return;
         }
         setError("");
+        navigate("/payment");
     }
 
     return (
@@ -32,7 +36,7 @@ export default function Login() {
                     <input type={"password"} placeholder={"password *"} value={password}
                            onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button type={"submit"}>Login</button>
+                    <button type="submit">Login</button>
                     {error && <div className="error-message">{error}</div>}
                 </form>
             </div>

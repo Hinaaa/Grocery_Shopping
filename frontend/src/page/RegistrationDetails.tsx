@@ -1,32 +1,25 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-export default function RegisterDetail() {
-    // For shipping fields
-    const [country, setCountry] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [street, setStreet] = useState("");
-    const [houseNumber, setHouseNumber] = useState("");
-    const [postalCode, setPostalCode] = useState("");
-    const [city, setCity] = useState("");
-    const [phone, setPhone] = useState("");
-    const [saveInfo, setSaveInfo] = useState(false);
+export default function Login() {
+    const [email,setEmail] =useState("")
+    const [password,setPassword] =useState("")
     const [error, setError] = useState("");
-
     const navigate = useNavigate();
+    const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
 
-    const handleRegister = () => {
-        if (!firstName || !lastName || !phone || !street || !houseNumber || !postalCode || !city || !country) {
-            setError("Please fill in all mandatory fields.");
+        if (!email) {
+            setError("Please enter Email");
             return;
         }
-        if (!saveInfo) {
-            setError("Please agree to the terms and conditions.");
+        if (!password) {
+            setError("Please enter Password");
             return;
         }
         setError("");
         navigate("/payment");
+
     };
 
     return (
@@ -52,19 +45,24 @@ export default function RegisterDetail() {
                        onChange={(e) => setCountry(e.target.value)}/>
             </div>
 
-            <div className="save-info">
-                <input
-                    type="checkbox"
-                    id="saveInfo"
-                    checked={saveInfo}
-                    onChange={(e) => setSaveInfo(e.target.checked)}
-                />
-                <label htmlFor="saveInfo">Agree to terms and conditions</label>
+    return(
+        <>
+            <div className="auth-form">
+                <h2>Login</h2>
+                <form onSubmit={handleLogin}>
+                    <label htmlFor="email">Email:</label>
+                    <input type={"email"} placeholder={"email *"} value={email}
+                           onChange={(e)=>setEmail(e.target.value)}
+                    />
+                    <label htmlFor="password">Password:</label>
+                    <input type={"password"} placeholder={"password *"} value={password}
+                           onChange={(e)=>setPassword(e.target.value)}
+                    />
+                    <button type="submit">Login</button>
+                    {error && <div className="error-message">{error}</div>}
+                </form>
             </div>
-
-            {error && <div className="error-message">{error}</div>}
-
-            <button onClick={handleRegister}>Register & Pay Now</button>
-        </div>
-    );
+        </>
+    )
 }
+
