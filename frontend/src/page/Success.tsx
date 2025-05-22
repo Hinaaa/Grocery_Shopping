@@ -20,10 +20,8 @@ export default function Success() {
     const handleShopMore = () => {
         navigate("/")
     }
-
-
     return(
-        <div>
+        <div className="success-container">
             <h2>Order has been placed successfully</h2>
             <p>Order Number: <strong>{orderNumber}</strong></p>
             <button onClick={handleShopMore}>Shop More</button>

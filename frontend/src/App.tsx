@@ -8,6 +8,10 @@ import type {CountType, Product} from "./types.ts";
 import ProductDetails from "./page/ProductDetails.tsx";
 import Success from "./page/Success.tsx";
 import CheckoutAndPayment from "./page/CheckoutAndPayment.tsx";
+import Register from "./page/Register.tsx";
+import Login from "./page/Login.tsx";
+import RegisterDetail from "./page/RegistrationDetails.tsx";
+import Payment from "./page/Payment.tsx";
 
 
 export default function App() {
@@ -43,11 +47,14 @@ export default function App() {
               <Route path={"/cart"} element={<Cart cart={cart}/>}/>
               <Route path={"/checkoutAndPayment"} element={<CheckoutAndPayment/>} />
               <Route path={"/success"} element={<Success/>} />
+              <Route path={"/login"} element={<Login/>} />
+                <Route path={"/register"} element={<Register/>} />
+                <Route path={"/registerdetail"} element={<RegisterDetail/>} />
+                <Route path={"/payment"} element={<Payment/>} />
               <Route path={"/:id"} element={<ProductDetails/>}/>
             </Routes>
         </main>
         <footer> By Beatrice, Hina and Mimoona</footer>
       </>
 )
-
 }
