@@ -32,7 +32,12 @@ export default function App() {
             }
         });
     }
-    console.log(count);
+
+    function resetCartAndCount(){
+        setCart([]);
+        setCount([]);
+    }
+
 
   return (
       <>
@@ -41,7 +46,7 @@ export default function App() {
             <Routes>
               <Route path={"/"} element={<Home addToCart={addToCart} count={count}/>}/>
               <Route path={"/cart"} element={<Cart cart={cart}/>}/>
-              <Route path={"/checkoutAndPayment"} element={<CheckoutAndPayment/>} />
+              <Route path={"/checkoutAndPayment"} element={<CheckoutAndPayment resetCartAndCount={resetCartAndCount}/>} />
               <Route path={"/success"} element={<Success/>} />
               <Route path={"/:id"} element={<ProductDetails/>}/>
             </Routes>
@@ -51,3 +56,8 @@ export default function App() {
 )
 
 }
+// /api/order/orderid  post
+// order id
+// date
+// itemList
+//total price

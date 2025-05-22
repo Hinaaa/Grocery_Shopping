@@ -54,7 +54,7 @@ export default function Cart(props: Readonly<CartProps> ){
                         <span>Total</span>
                         <span></span>
                         <span></span>
-                        <span></span>
+                        <span>€</span>
                         <span>{props.cart.reduce((a:number, b:Product)=>a+b.price, 0)}</span>
                     </div>
                 </main>
