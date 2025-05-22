@@ -1,8 +1,8 @@
 package com.example.backend.exception;
 
 public class IdNotFoundException extends Exception{
-    public IdNotFoundException(String id) {
+    public IdNotFoundException(String id, String sender) {
 
-        super("Product Id " + id + " not found");
+        super(sender+" Id " + id + " not found");
     }
 }

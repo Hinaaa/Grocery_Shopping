@@ -1,7 +1,11 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
-export default function CheckoutAndPayment() {
+type Props = {
+    resetCartAndCount: () => void;
+    submitOrder: (userId: string) => Promise<any>
+};
+export default function CheckoutAndPayment(props: Readonly<Props>) {
     //for shipping fields
 
     const[email,setEmail] = useState("")
@@ -36,7 +40,7 @@ export default function CheckoutAndPayment() {
             }
         }
         setError(""); // clear any previous errors
-        navigate("/success");
+       // navigate("/success");
 
     }
     //for payment with card settigns
@@ -44,6 +48,20 @@ export default function CheckoutAndPayment() {
     const [expiry, setExpiry] = useState("")
     const [cvv, setcvv] = useState("")
 
+    function handleOrder(){
+      handlePayment();
+        const userId = "123"
+        props.submitOrder(userId)
+            .then(()=>{
+                navigate("/success");
+                props.resetCartAndCount();
+
+            })
+            .catch(error =>{
+                console.error("order failed", error);
+            })
+
+    }
 
     return (
         <div className="checkout-payment-container">
@@ -129,8 +147,10 @@ export default function CheckoutAndPayment() {
 
             </div>
             {/* PayNow button*/}
-            <button onClick={handlePayment}>Pay Now</button>
+            <button onClick={handleOrder}>Pay Now</button>
             {error && <div className="error-message">{error}</div>}
+
+
         </div>
     );
 }

@@ -13,23 +13,6 @@ export default function Cart(props: Readonly<CartProps> ){
     function checkout(){
         routeTo("/CheckoutAndPayment");
     }
-    const cartSummary: CartItemType[] = props.cart.reduce((acc, item) => {
-        if (acc[item.id]) {
-            acc[item.id].quantity += 1;
-            acc[item.id].total += item.price;
-        } else {
-            acc[item.id] = {
-                id: item.id,
-                name: item.name,
-                unit: item.unit,
-                price: item.price,
-                quantity: 1,
-                total: item.price
-            };
-        }
-        return acc;
-    }, []);
-
 
     return(
         <>
@@ -54,7 +37,7 @@ export default function Cart(props: Readonly<CartProps> ){
                         <span>Total</span>
                         <span></span>
                         <span></span>
-                        <span></span>
+                        <span>€</span>
                         <span>{props.cart.reduce((a:number, b:Product)=>a+b.price, 0)}</span>
                     </div>
                 </main>
