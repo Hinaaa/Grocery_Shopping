@@ -7,8 +7,15 @@ export default function Success() {
 
     //order number generated
     useEffect(() => {
-        const randomNumber = "Ord-" +Math.floor(100000 + Math.random() * 900000)
-        setOrderNumber(randomNumber)
+        function generateSecureOrderNumber() {
+            const array = new Uint32Array(1);
+            crypto.getRandomValues(array);
+            const number = array[0] % 900000 + 100000;  // ensures 6-digit number
+            return "Ord-" + number;
+        }
+
+        const randomNumber = generateSecureOrderNumber();
+        setOrderNumber(randomNumber);
     }, []);
     const handleShopMore = () => {
         navigate("/")
