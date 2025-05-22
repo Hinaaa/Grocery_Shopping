@@ -3,6 +3,7 @@ import {useState} from "react";
 
 type Props = {
     resetCartAndCount: () => void;
+    submitOrder: (userId: string) => Promise<any>
 };
 export default function CheckoutAndPayment(props: Readonly<Props>) {
     //for shipping fields
@@ -28,8 +29,17 @@ export default function CheckoutAndPayment(props: Readonly<Props>) {
     const [cvv, setcvv] = useState("")
 
     function handleOrder(){
-        navigate("/success");
-        props.resetCartAndCount();
+        const userId = "123"
+        props.submitOrder(userId)
+            .then(()=>{
+                navigate("/success");
+                props.resetCartAndCount();
+
+            })
+            .catch(error =>{
+                console.error("order failed", error);
+            })
+
     }
 
     return (
