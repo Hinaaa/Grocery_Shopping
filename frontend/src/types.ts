@@ -20,3 +20,10 @@ export type CountType = {
     productId: string,
     count: number
 }
+
+export type OrderPayload = {
+    orderId: string,
+    orderItemList: CountType[]
+    totalPrice: number
+    userId: string,
+}
