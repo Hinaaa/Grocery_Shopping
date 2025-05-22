@@ -1,15 +1,15 @@
 import {useNavigate} from "react-router-dom";
 
 type Props = {
-    orderNumber:string
+    orderNumber: string
 }
 export default function Success(props: Readonly<Props>) {
-    const navigate =useNavigate();
+    const navigate = useNavigate();
     const handleShopMore = () => {
         navigate("/")
     }
 
-    return(
+    return (
         <div className="success-container">
             <h2>Order has been placed successfully</h2>
             <p>Order Number: <strong>{props.orderNumber}</strong></p>

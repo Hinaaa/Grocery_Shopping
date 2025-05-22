@@ -1,6 +1,6 @@
-export default function CartHeader(){
+export default function CartHeader() {
 
-    return(
+    return (
         <>
             <div className="cartitem cartheader">
                 <span>Product</span>
