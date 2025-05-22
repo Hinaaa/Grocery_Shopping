@@ -1,4 +1,4 @@
-import type { Product} from "../types.ts";
+import type {CartItemType, Product} from "../types.ts";
 import CartItem from "../component/CartItem.tsx";
 import CartHeader from "../component/CartHeader.tsx";
 import {useNavigate} from "react-router-dom";
@@ -13,6 +13,24 @@ export default function Cart(props: Readonly<CartProps> ){
     function checkout(){
         routeTo("/checkout");
     }
+    const cartSummary: CartItemType[] = props.cart.reduce((acc, item) => {
+        if (acc[item.id]) {
+            acc[item.id].quantity += 1;
+            acc[item.id].total += item.price;
+        } else {
+            acc[item.id] = {
+                id: item.id,
+                name: item.name,
+                unit: item.unit,
+                price: item.price,
+                quantity: 1,
+                total: item.price
+            };
+        }
+        return acc;
+    }, []);
+
+
     return(
         <>
             <h1> Welcome to your cart </h1>
