@@ -6,6 +6,8 @@ import NavBar from "./component/NavBar.tsx";
 import {useState} from "react";
 import type { Product} from "./types.ts";
 import ProductDetails from "./page/ProductDetails.tsx";
+import Success from "./page/Success.tsx";
+import CheckoutAndPayment from "./page/CheckoutAndPayment.tsx";
 
 export default function App() {
     const [cart, setCart] = useState<Product[]>([]);
@@ -21,7 +23,8 @@ export default function App() {
             <Routes>
               <Route path={"/"} element={<Home addToCart={addToCart}/>}/>
               <Route path={"/cart"} element={<Cart cart={cart}/>}/>
-              <Route path={"/checkout"} element={<h1>Checkout</h1>}/>
+              <Route path={"/checkoutAndPayment"} element={<CheckoutAndPayment/>} />
+              <Route path={"/success"} element={<Success/>} />
               <Route path={"/:id"} element={<ProductDetails/>}/>
             </Routes>
         </main>

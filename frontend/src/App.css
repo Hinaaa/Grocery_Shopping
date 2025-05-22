@@ -65,3 +65,125 @@
 .noborder{
   border: none;
 }
+/* CheckoutAndPayment.css */
+
+.payment-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+}
+
+.payment-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.payment-methods {
+  display: inline-flex;      /* keep input and label side by side */
+  align-items: center;       /* vertically center them */
+  gap: 6px;                  /* small gap between radio and label */
+  margin-bottom: 1rem;
+}
+
+.card-fields input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.payment-note {
+  margin-top: 6px;       /* small space above the text */
+  font-size: 0.9rem;     /* slightly smaller font */
+  color: #555;           /* a subtle gray color */
+  font-style: italic;    /* optional: italic for emphasis */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+.shipping-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.shipping-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+  max-width: 400px; /* optional, limit form width */
+}
+
+.shipping-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.shipping-form input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.user-auth-block {
+  border: 1.5px solid #ccc;       /* light gray border */
+  background-color: #f9f9f9;      /* very light gray background */
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  max-width: 420px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.user-auth-block input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1.5px solid #aaa;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.user-auth-block input:focus {
+  border-color: #888;
+  box-shadow: 0 0 6px #ddd;
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border: 1.5px solid #888;
+  border-radius: 4px;
+  background-color: #ddd; /* grey background */
+  color: #444;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #ccc;
+  border-color: #666;
+}

@@ -11,7 +11,7 @@ export default function Cart(props: Readonly<CartProps> ){
     const routeTo = useNavigate();
 
     function checkout(){
-        routeTo("/checkout");
+        routeTo("/CheckoutAndPayment");
     }
     return(
         <>
