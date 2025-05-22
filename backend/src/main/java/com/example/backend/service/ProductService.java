@@ -25,7 +25,7 @@ public class ProductService {
     }
 
     public Product getProductById(String id) throws IdNotFoundException {
-        return productRepo.findById(id).orElseThrow(()-> new IdNotFoundException(id));
+        return productRepo.findById(id).orElseThrow(()-> new IdNotFoundException(id, "Product"));
     }
 
     public Product addProduct(ProductDto productDto) {
@@ -52,7 +52,7 @@ public class ProductService {
             );
             return productRepo.save(updatedProduct);
         }
-        throw new IdNotFoundException(id);
+        throw new IdNotFoundException(id, "Product");
     }
 
     public boolean deleteProductById(String id) throws IdNotFoundException {
@@ -60,7 +60,7 @@ public class ProductService {
             productRepo.deleteById(id);
             return true;
         }
-        throw new IdNotFoundException(id);
+        throw new IdNotFoundException(id, "Product");
     }
 
 }
