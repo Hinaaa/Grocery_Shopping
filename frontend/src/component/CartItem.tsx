@@ -16,7 +16,7 @@ export default function CartItem(props: Readonly<CartItemProps>){
                 <span>{props.cartItem.unit}</span>
                 <span>{props.cartItem.price}</span>
                 <span>{props.quantity}</span>
-                <span>{totalPrice}</span>
+                <span>{totalPrice.toFixed(2)}</span>
             </div>
         </>
     )

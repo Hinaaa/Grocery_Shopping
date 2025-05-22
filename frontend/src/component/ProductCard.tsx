@@ -17,7 +17,6 @@ export default function ProductCard(props: Readonly<Props>) {
         props.addToCart(props.product, 1 );
     }
 
-
     return (
         <>
             <div className="productcard">

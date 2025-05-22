@@ -1,7 +1,10 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
-export default function CheckoutAndPayment() {
+type Props = {
+    resetCartAndCount: () => void;
+};
+export default function CheckoutAndPayment(props: Readonly<Props>) {
     //for shipping fields
 
     const[email,setEmail] = useState("")
@@ -24,6 +27,10 @@ export default function CheckoutAndPayment() {
     const [expiry, setExpiry] = useState("")
     const [cvv, setcvv] = useState("")
 
+    function handleOrder(){
+        navigate("/success");
+        props.resetCartAndCount();
+    }
 
     return (
         <div className="checkout-payment-container">
@@ -109,7 +116,7 @@ export default function CheckoutAndPayment() {
 
             </div>
             {/* PayNow button*/}
-            <button onClick={()=> navigate("/success")}>Pay Now</button>
+            <button onClick={handleOrder}>Pay Now</button>
         </div>
     );
 }
