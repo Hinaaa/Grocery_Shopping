@@ -1,5 +1,4 @@
 import './App.css'
-import * as React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./page/Home.tsx";
 import Cart from "./page/Cart.tsx";
