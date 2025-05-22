@@ -1,14 +1,209 @@
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #FFFDE1, #FDEBFF);
+  color: #333;
+}
+
+/* Root container */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  min-height: 100vh;
+  width: 100%;
   padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Page wrapper */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
 
+/* Header */
+.page-header {
+  /*background: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF99AC);*/
+  /*padding: 2rem;*/
+  /*text-align: center;*/
+  /*font-size: 2.5rem;*/
+  /*color: white;*/
+  /*font-weight: bold;*/
+  /*letter-spacing: 1px;*/
+  /*text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);*/
+  background: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF99AC);
+  padding: 2rem;
+  display: flex;
+  justify-content: center; /* Center nav items horizontally */
+  gap: 2rem; /* Space between links */
+  font-size: 1.25rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.navlink {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navlink:hover {
+  color: #9e4658;
+}
+
+/* Main content */
+.page-main {
+  flex: 1;
+  padding: 2rem;
+  background-color: #FFF6F6;
+  justify-content: center; /* Center the grid horizontally */
+}
+
+/* Card grid container */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Product Card Styling */
 .card {
-  padding: 2em;
+  background: #fdebff;
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 300px; /* Limit max width */
+  width: 100%;      /* Take full width inside grid cell */
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
 }
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.price {
+  font-weight: bold;
+  color: #ca8a04;
+  margin-top: 0.5rem;
+}
+
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #9e4658;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.add-btn:hover {
+  background-color: #059669;
+  transform: scale(1.05);
+}
+
+.count {
+  background-color: white;
+  color: #10b981;
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+.plus-icon {
+  font-size: 1.2rem;
+}
+
+/* Footer */
+.page-footer {
+  background-color: #FECACA;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #7F1D1D;
+  font-weight: 500;
+}
+
+
+.cart-head {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #9e4658;
+  font-weight: bold;
+}
+
+/* Center the div vertically and horizontally */
+.content {
+  justify-content: center;
+  align-items: center;
+  /* Optional styling */
+  background-color: #fdebff;
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  max-width: 800px;
+  height: fit-content;
+  margin: auto;
+
+}
+
+.payment-wrapper {
+  display: flex;
+  justify-content: center;  /* Center horizontally */
+  align-items: center;      /* Center vertically */
+  flex: 1;
+  padding: 2rem;
+  background-color: #FFF6F6;
+  min-height: calc(100vh - 120px);
+}
+
+.checkout-payment-container {
+  text-align: center;
+  background-color: #fdebff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  width: 100%;
+
+
+}
+
+
+
 
 .read-the-docs {
   color: #888;

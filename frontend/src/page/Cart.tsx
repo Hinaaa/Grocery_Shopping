@@ -16,8 +16,8 @@ export default function Cart(props: Readonly<CartProps> ){
 
     return(
         <>
-            <h1> Welcome to your cart </h1>
-            <div>
+            <h1 className="cart-head"> Summary of your shopping items</h1>
+            <div className="content">
                 <CartHeader/>
                 <main className="">
                     {/* Filtere nur die eindeutigen Artikel basierend auf der ID */}
@@ -38,7 +38,7 @@ export default function Cart(props: Readonly<CartProps> ){
                         <span></span>
                         <span></span>
                         <span>€</span>
-                        <span>{props.cart.reduce((a:number, b:Product)=>a+b.price, 0)}</span>
+                        <span>{(props.cart.reduce((a:number, b:Product)=>a+b.price, 0)).toFixed(2)}</span>
                     </div>
                 </main>
                 <div className="cartitem noborder">
@@ -47,7 +47,6 @@ export default function Cart(props: Readonly<CartProps> ){
                     <span></span>
                     <span></span>
                     <span><button onClick={checkout}>Checkout</button></span>
-
                 </div>
             </div>
         </>
