@@ -1,4 +1,5 @@
 import './App.css'
+import * as React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./page/Home.tsx";
 import Cart from "./page/Cart.tsx";
@@ -18,9 +19,9 @@ import axios from "axios";
 export default function App() {
     const [cart, setCart] = useState<Product[]>([]);
     const [count, setCount] = useState<CountType[]>([]);
-    const [orderNumber,setOrderNumber] = useState("");
+    const [orderNumber, setOrderNumber] = useState("");
 
-    function addToCart (product:Product, count:number){
+    function addToCart(product: Product, count: number) {
 
         setCart(prevCart => [...prevCart, product]);
 
@@ -34,7 +35,7 @@ export default function App() {
                 };
                 return updated;
             } else {
-                return [...prevCount, { productId: product.id, count }];
+                return [...prevCount, {productId: product.id, count}];
             }
         });
     }
@@ -62,7 +63,7 @@ export default function App() {
     }
 
 
-    function resetCartAndCount(){
+    function resetCartAndCount() {
         setCart([]);
         setCount([]);
     }
@@ -81,31 +82,26 @@ export default function App() {
     }, []);
 
 
-  return (
-      <>
-        <NavBar />
-        <main className="rootmain">
-            <Routes>
-              <Route path={"/"} element={<Home addToCart={addToCart} count={count}/>}/>
-              <Route path={"/cart"} element={<Cart cart={cart}/>}/>
-              <Route path={"/login"} element={<Login/>} />
-                <Route path={"/register"} element={<Register/>} />
-                <Route path={"/registerdetail"} element={<RegisterDetail/>} />
-                <Route path={"/payment"} element={<Payment/>} />
-
-              <Route path={"/checkoutAndPayment"} element={<CheckoutAndPayment resetCartAndCount={resetCartAndCount} submitOrder={submitOrder}/>} />
-              <Route path={"/success"} element={<Success orderNumber={orderNumber}/>} />
-
-              <Route path={"/:id"} element={<ProductDetails/>}/>
-            </Routes>
-        </main>
-        <footer> By Beatrice, Hina and Mimoona</footer>
-      </>
-)
+    return (
+        <>
+            <NavBar/>
+            <main className="rootmain">
+                <Routes>
+                    <Route path={"/"} element={<Home addToCart={addToCart} count={count}/>}/>
+                    <Route path={"/cart"} element={<Cart cart={cart}/>}/>
+                    <Route path={"/login"} element={<Login/>}/>
+                    <Route path={"/register"} element={<Register/>}/>
+                    <Route path={"/registerdetail"} element={<RegisterDetail/>}/>
+                    <Route path={"/payment"} element={<Payment/>}/>
+                    <Route path={"/checkoutAndPayment"}
+                           element={<CheckoutAndPayment resetCartAndCount={resetCartAndCount}
+                                                        submitOrder={submitOrder}/>}/>
+                    <Route path={"/success"} element={<Success orderNumber={orderNumber}/>}/>
+                    <Route path={"/:id"} element={<ProductDetails/>}/>
+                </Routes>
+            </main>
+            <footer> By Beatrice, Hina and Mimoona</footer>
+        </>
+    )
 }
-// /api/order  post path
-// payload must have :
-// order id
-// orderitemlist [productid, productcount ]
-//total order price
-//userId
+
