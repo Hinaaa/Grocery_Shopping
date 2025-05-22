@@ -63,7 +63,6 @@ export default function RegisterDetail() {
             </div>
 
             {error && <div className="error-message">{error}</div>}
-
             <button onClick={handleRegister}>Register & Pay Now</button>
         </div>
     );
