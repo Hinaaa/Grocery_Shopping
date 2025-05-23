@@ -20,7 +20,7 @@ export default function Home(props: Readonly<HomeProps>) {
 
     return (
         <>
-            <div className="productlist">
+            <div className="card-grid">
                 {products.map(p => <ProductCard key={p.id} product={p} addToCart={props.addToCart} count={props.count}/>)}
             </div>
         </>

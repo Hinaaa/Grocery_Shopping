@@ -19,19 +19,18 @@ export default function ProductCard(props: Readonly<Props>) {
 
     return (
         <>
-            <div className="productcard">
-                <Link to={`/${props.product.id}`}>
-
-                    <header>{props.product.name}</header>
-                    <main>
-                        <span>{props.product.description}</span>
-                        <span>{props.product.unit}</span>
-                        <span>{props.product.price}</span>
-                    </main>
+            <div className="card">
+                <Link to={`/${props.product.id}`} className="card-link">
+                    <h3>{props.product.name}</h3>
+                    <p>{props.product.description}</p>
+                    <label>per {props.product.unit}</label>
+                    <p className="price">{props.product.price}</p>
                 </Link>
-                <footer>
-                    <button onClick={addProduct}> {productCount} +</button>
-                </footer>
+
+                <button onClick={addProduct} className="add-btn">
+                    {productCount > 0 && <span className="count">{productCount}</span>}
+                    <span className="plus-icon">+</span>
+                </button>
             </div>
         </>
     )

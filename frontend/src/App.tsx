@@ -1,5 +1,4 @@
 import './App.css'
-import * as React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./page/Home.tsx";
 import Cart from "./page/Cart.tsx";
@@ -83,9 +82,12 @@ export default function App() {
 
 
     return (
-        <>
-            <NavBar/>
-            <main className="rootmain">
+        <div className="page-wrapper">
+            <header className="page-header">
+                <NavBar/>
+            </header>
+
+            <main className="page-main">
                 <Routes>
                     <Route path={"/"} element={<Home addToCart={addToCart} count={count}/>}/>
                     <Route path={"/cart"} element={<Cart cart={cart}/>}/>
@@ -100,8 +102,8 @@ export default function App() {
                     <Route path={"/:id"} element={<ProductDetails/>}/>
                 </Routes>
             </main>
-            <footer> By Beatrice, Hina and Mimoona</footer>
-        </>
+            <footer className="page-footer"> By Beatrice, Hina and Mimoona</footer>
+        </div>
     )
 }
 
